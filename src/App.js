@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 import Home from "./pages/Home";
+import Products from "./pages/Products";
 import './App.css';
 
 function App() {
@@ -15,7 +16,8 @@ function App() {
           <div className="p-8">
             <Routes>
               <Route path="/" element={<Home />} />
-              {/* Add more routes here for Products, Filaments, Suppliers, etc. */}
+              <Route path="/products" element={<Products />} />
+              {/* Add more routes here for Filaments, Suppliers, etc. */}
             </Routes>
           </div>
         </div>
