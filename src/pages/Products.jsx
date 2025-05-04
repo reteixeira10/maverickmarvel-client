@@ -55,6 +55,22 @@ const Products = () => {
     }
   };
 
+  const handleDelete = async (id) => {
+    if (!window.confirm("Are you sure you want to delete this product?")) return;
+    try {
+      const res = await fetch(`/api/products/${id}`, {
+        method: "DELETE",
+      });
+      if (!res.ok) {
+        const data = await res.json();
+        throw new Error(data.error || "Failed to delete product");
+      }
+      fetchProducts();
+    } catch (err) {
+      alert(err.message);
+    }
+  };
+
   return (
     <div>
       <h1 className="text-3xl font-bold mb-8 text-green-700 dark:text-green-400">3D Printed Products</h1>
@@ -133,6 +149,12 @@ const Products = () => {
             <p className="text-gray-700 dark:text-gray-300 mb-1">
               <span className="font-medium">Weight:</span> {product.weight} kg
             </p>
+            <button
+              onClick={() => handleDelete(product.id)}
+              className="mt-4 bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded transition"
+            >
+              Delete
+            </button>
           </div>
         ))}
       </div>
