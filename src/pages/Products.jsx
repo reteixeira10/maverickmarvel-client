@@ -56,10 +56,10 @@ const Products = () => {
             key={product.id}
             className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 flex flex-col items-center"
           >
-            {product.photos && product.photos.length > 0 ? (
+            {product.photo ? (
               <img
-                src={product.photos[0].image}
-                alt={product.photos[0].filename}
+                src={product.photo.image}
+                alt={product.photo.filename}
                 className="w-32 h-32 object-cover rounded mb-4"
               />
             ) : (
