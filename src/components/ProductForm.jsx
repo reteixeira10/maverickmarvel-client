@@ -1,15 +1,15 @@
 import React, { useState } from "react";
 
-const ProductForm = ({ onSuccess, loading }) => {
+const ProductForm = ({ onSuccess }) => {
   const [form, setForm] = useState({ name: "", material: "", weight: "" });
   const [photos, setPhotos] = useState([]);
   const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
 
   const handleChange = (e) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // Allow multiple file selection and accumulation
   const handlePhotosChange = (e) => {
     setPhotos(Array.from(e.target.files));
   };
@@ -17,11 +17,11 @@ const ProductForm = ({ onSuccess, loading }) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
+    setLoading(true);
     const formData = new FormData();
     formData.append("name", form.name);
     formData.append("material", form.material);
     formData.append("weight", form.weight);
-    // Append all selected files
     photos.forEach((file) => formData.append("photos", file));
     try {
       const res = await fetch("/api/products", {
@@ -37,6 +37,8 @@ const ProductForm = ({ onSuccess, loading }) => {
       if (onSuccess) onSuccess();
     } catch (err) {
       setError(err.message);
+    } finally {
+      setLoading(false);
     }
   };
 
