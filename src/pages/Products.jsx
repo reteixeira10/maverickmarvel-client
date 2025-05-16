@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from "react";
-import ProductForm from "../components/ProductForm";
+import { Link } from "react-router-dom";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
-  const [showForm, setShowForm] = useState(false);
   const [loading, setLoading] = useState(false);
 
   const fetchProducts = () => {
@@ -39,20 +38,12 @@ const Products = () => {
   return (
     <div>
       <h1 className="text-3xl font-bold mb-8 text-green-700 dark:text-green-400">3D Printed Products</h1>
-      <button
-        onClick={() => setShowForm((prev) => !prev)}
-        className="mb-4 bg-green-700 hover:bg-green-800 text-white font-semibold px-4 py-2 rounded transition"
+      <Link
+        to="/products/new"
+        className="mb-4 inline-block bg-green-700 hover:bg-green-800 text-white font-semibold px-4 py-2 rounded transition"
       >
-        {showForm ? "Cancel" : "Add New Product"}
-      </button>
-      {showForm && (
-        <ProductForm
-          onSuccess={() => {
-            fetchProducts();
-            setShowForm(false);
-          }}
-        />
-      )}
+        Add New Product
+      </Link>
       {loading ? (
         <div className="text-center text-gray-500 dark:text-gray-300 py-8">Loading...</div>
       ) : (

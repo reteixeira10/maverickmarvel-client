@@ -4,6 +4,7 @@ import Navbar from "./components/Navbar";
 import Sidebar from "./components/Sidebar";
 import Home from "./pages/Home";
 import Products from "./pages/Products";
+import ProductCreate from "./pages/ProductCreate";
 import './App.css';
 
 function App() {
@@ -14,11 +15,12 @@ function App() {
         <div className="flex-1 ml-56">
           <Navbar />
           <div className="p-8">
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="/products" element={<Products />} />
-              {/* Add more routes here for Filaments, Suppliers, etc. */}
-            </Routes>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/products" element={<Products />} />
+            <Route path="/products/new" element={<ProductCreate />} />
+            {/* Add more routes here for Filaments, Suppliers, etc. */}
+          </Routes>
           </div>
         </div>
       </div>
