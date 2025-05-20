@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import ProductModal from "../components/ProductModal";
 
 const Products = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [selectedProductId, setSelectedProductId] = useState(null);
+  const navigate = useNavigate();
 
   const fetchProducts = () => {
     setLoading(true);
@@ -83,6 +84,15 @@ const Products = () => {
                   disabled={loading}
                 >
                   Delete
+                </button>
+                <button
+                  onClick={e => {
+                    e.stopPropagation();
+                    navigate(`/products/${product.id}/edit`);
+                  }}
+                  className="mt-2 bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded transition"
+                >
+                  Edit
                 </button>
               </div>
             ))}
