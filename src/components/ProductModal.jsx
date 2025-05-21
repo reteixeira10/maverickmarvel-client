@@ -35,7 +35,8 @@ const ProductModal = ({ productId, onClose }) => {
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-black bg-opacity-40" onClick={onClose}>
       <div
-        className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 max-w-4xl w-full relative"
+        className="bg-white dark:bg-gray-800 rounded-lg shadow-lg p-8 max-w-4xl w-full relative
+                    max-h-[90vh] overflow-y-auto sm:max-w-2xl md:max-w-3xl lg:max-w-4xl"
         onClick={e => e.stopPropagation()}
       >
         <button
@@ -86,21 +87,34 @@ const ProductModal = ({ productId, onClose }) => {
                 )}
               </div>
             )}
-            <h2 className="text-2xl font-bold mb-2">{product.name}</h2>
-            <p><span className="font-medium">SKU:</span> {product.SKU}</p>
-            <p><span className="font-medium">Category:</span> {product.category}</p>
-            <p><span className="font-medium">Material:</span> {product.material}</p>
-            <p><span className="font-medium">Colors:</span> {product.colors}</p>
-            <p><span className="font-medium">Dimensions:</span> {product.dimensions}</p>
-            <p><span className="font-medium">Weight:</span> {product.weight} kg</p>
-            <p><span className="font-medium">Cost:</span> {product.cost}</p>
-            <p><span className="font-medium">Orders:</span> {product.orders}</p>
-            <p><span className="font-medium">Origin:</span> {product.origin}</p>
-            <p><span className="font-medium">Print Time:</span> {product.print_time}</p>
-            <p><span className="font-medium">Print Instruction:</span> {product.print_instruction}</p>
-            <p><span className="font-medium">Copywriting:</span> {product.copywriting}</p>
-            <p><span className="font-medium">Marketplace:</span> {product.marketplace}</p>
-            <p><span className="font-medium">Active:</span> {product.active ? "Yes" : "No"}</p>
+            <>
+              <h2 className="text-2xl font-bold mb-4">{product.name}</h2>
+              <div className="space-y-2 mb-4">
+                <div><span className="font-semibold">SKU:</span> <span className="text-gray-700 dark:text-gray-200">{product.SKU}</span></div>
+                <div><span className="font-semibold">Category:</span> <span className="text-gray-700 dark:text-gray-200">{product.category}</span></div>
+                <div><span className="font-semibold">Material:</span> <span className="text-gray-700 dark:text-gray-200">{product.material}</span></div>
+                <div><span className="font-semibold">Colors:</span> <span className="text-gray-700 dark:text-gray-200">{product.colors}</span></div>
+                <div><span className="font-semibold">Dimensions:</span> <span className="text-gray-700 dark:text-gray-200">{product.dimensions}</span></div>
+                <div><span className="font-semibold">Weight:</span> <span className="text-gray-700 dark:text-gray-200">{product.weight} kg</span></div>
+                <div><span className="font-semibold">Cost:</span> <span className="text-gray-700 dark:text-gray-200">{product.cost}</span></div>
+                <div><span className="font-semibold">Orders:</span> <span className="text-gray-700 dark:text-gray-200">{product.orders}</span></div>
+                <div><span className="font-semibold">Origin:</span> <span className="italic text-blue-700 dark:text-blue-300">{product.origin}</span></div>
+                <div><span className="font-semibold">Print Time:</span> <span className="text-gray-700 dark:text-gray-200">{product.print_time}</span></div>
+                <div>
+                  <span className="font-semibold">Print Instruction:</span>
+                  <pre className="whitespace-pre-line bg-gray-100 dark:bg-gray-900 rounded p-2 mt-1 text-gray-800 dark:text-gray-100">{product.print_instruction}</pre>
+                </div>
+                <div>
+                  <span className="font-semibold">Copywriting:</span>
+                  <pre className="whitespace-pre-line bg-gray-100 dark:bg-gray-900 rounded p-2 mt-1 text-gray-800 dark:text-gray-100">{product.copywriting}</pre>
+                </div>
+                <div>
+                  <span className="font-semibold">Marketplace:</span>
+                  <pre className="whitespace-pre-line bg-gray-100 dark:bg-gray-900 rounded p-2 mt-1 text-gray-800 dark:text-gray-100">{product.marketplace}</pre>
+                </div>
+                <div><span className="font-semibold">Active:</span> <span className="text-gray-700 dark:text-gray-200">{product.active ? "Yes" : "No"}</span></div>
+              </div>
+            </>
           </>
         )}
       </div>

@@ -76,7 +76,7 @@ const ProductForm = ({ onSuccess }) => {
 
   return (
     <form
-      className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-8 max-w-md"
+      className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 mb-8 max-w-2xl mx-auto"
       onSubmit={handleSubmit}
       encType="multipart/form-data"
     >
