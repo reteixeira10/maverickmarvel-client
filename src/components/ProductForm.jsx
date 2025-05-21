@@ -1,5 +1,10 @@
 import React, { useState } from "react";
 
+// REACT_APP_API_URL will be set by Render for the deployed static site
+// For local development, if REACT_APP_API_URL is not set, it will default to an empty string,
+// making the fetch relative ("/api/products"), which then gets handled by your local proxy.
+const API_BASE_URL = process.env.REACT_APP_API_URL || "";
+
 const ProductForm = ({ onSuccess }) => {
   const [form, setForm] = useState({
     name: "",
@@ -40,7 +45,7 @@ const ProductForm = ({ onSuccess }) => {
     });
     photos.forEach((file) => formData.append("photos", file));
     try {
-      const res = await fetch("/api/products", {
+      const res = await fetch(`${API_BASE_URL}/api/products`, {
         method: "POST",
         body: formData,
       });

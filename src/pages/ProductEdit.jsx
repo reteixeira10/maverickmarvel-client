@@ -1,6 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 
+// REACT_APP_API_URL will be set by Render for the deployed static site
+// For local development, if REACT_APP_API_URL is not set, it will default to an empty string,
+// making the fetch relative ("/api/products"), which then gets handled by your local proxy.
+const API_BASE_URL = process.env.REACT_APP_API_URL || "";
+
 const ProductEdit = () => {
   const { id } = useParams();
   const navigate = useNavigate();
@@ -28,7 +33,7 @@ const ProductEdit = () => {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    fetch(`/api/products/${id}`)
+    fetch(`${API_BASE_URL}/api/products/${id}`)
       .then(res => res.json())
       .then(data => {
         setForm({
@@ -93,7 +98,7 @@ const ProductEdit = () => {
     existingPhotos.forEach(photo => formData.append("keepPhotos", photo.id));
     photos.forEach(file => formData.append("photos", file));
     try {
-      const res = await fetch(`/api/products/${id}`, {
+      const res = await fetch(`${API_BASE_URL}/api/products/${id}`, {
         method: "PUT",
         body: formData,
       });

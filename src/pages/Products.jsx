@@ -2,17 +2,35 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import ProductModal from "../components/ProductModal";
 
+
+// REACT_APP_API_URL will be set by Render for the deployed static site
+// For local development, if REACT_APP_API_URL is not set, it will default to an empty string,
+// making the fetch relative ("/api/products"), which then gets handled by your local proxy.
+const API_BASE_URL = process.env.REACT_APP_API_URL || "";
+
+
 const Products = () => {
   const [products, setProducts] = useState([]);
   const [loading, setLoading] = useState(false);
   const [selectedProductId, setSelectedProductId] = useState(null);
   const navigate = useNavigate();
 
+
   const fetchProducts = () => {
     setLoading(true);
-    fetch("/api/products")
-      .then((res) => res.json())
+
+    fetch(`${API_BASE_URL}/api/products`)
+        .then((res) => {
+          if (!res.ok) {
+            throw new Error(`HTTP error! status: ${res.status}`);
+          }
+          return res.json();
+      })
       .then((data) => setProducts(data))
+      .catch(error => {
+        console.error("Error fetching products:", error);
+        // Handle error appropriately, e.g., set an error state
+    })
       .finally(() => setLoading(false));
   };
 
@@ -24,7 +42,7 @@ const Products = () => {
     if (!window.confirm("Are you sure you want to delete this product?")) return;
     try {
       setLoading(true);
-      const res = await fetch(`/api/products/${id}`, {
+      const res = await fetch(`${API_BASE_URL}/api/products/${id}`, {
         method: "DELETE",
       });
       if (!res.ok) {

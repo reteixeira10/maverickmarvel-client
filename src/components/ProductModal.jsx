@@ -8,11 +8,26 @@ const ProductModal = ({ productId, onClose }) => {
   useEffect(() => {
     if (!productId) return;
     setLoading(true);
-    fetch(`/api/products/${productId}`)
-      .then(res => res.json())
+
+    // REACT_APP_API_URL will be set by Render for the deployed static site
+    // For local development, if REACT_APP_API_URL is not set, it will default to an empty string,
+    // making the fetch relative ("/api/products"), which then gets handled by your local proxy.
+    const API_BASE_URL = process.env.REACT_APP_API_URL || "";
+
+    fetch(`${API_BASE_URL}/api/products/${productId}`)
+      .then((res) => {
+        if (!res.ok) {
+          throw new Error(`HTTP error! status: ${res.status}`);
+        }
+        return res.json();
+      })
       .then(data => {
         setProduct(data);
         setCurrent(0);
+      })
+      .catch(error => {
+        console.error("Error fetching product:", error);
+        // Handle error appropriately, e.g., set an error state
       })
       .finally(() => setLoading(false));
   }, [productId]);
