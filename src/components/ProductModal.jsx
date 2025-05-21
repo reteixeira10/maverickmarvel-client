@@ -87,9 +87,20 @@ const ProductModal = ({ productId, onClose }) => {
               </div>
             )}
             <h2 className="text-2xl font-bold mb-2">{product.name}</h2>
-            <p className="mb-1"><span className="font-medium">Material:</span> {product.material}</p>
-            <p className="mb-1"><span className="font-medium">Weight:</span> {product.weight} kg</p>
-            {/* Add more fields as needed */}
+            <p><span className="font-medium">SKU:</span> {product.SKU}</p>
+            <p><span className="font-medium">Category:</span> {product.category}</p>
+            <p><span className="font-medium">Material:</span> {product.material}</p>
+            <p><span className="font-medium">Colors:</span> {product.colors}</p>
+            <p><span className="font-medium">Dimensions:</span> {product.dimensions}</p>
+            <p><span className="font-medium">Weight:</span> {product.weight} kg</p>
+            <p><span className="font-medium">Cost:</span> {product.cost}</p>
+            <p><span className="font-medium">Orders:</span> {product.orders}</p>
+            <p><span className="font-medium">Origin:</span> {product.origin}</p>
+            <p><span className="font-medium">Print Time:</span> {product.print_time}</p>
+            <p><span className="font-medium">Print Instruction:</span> {product.print_instruction}</p>
+            <p><span className="font-medium">Copywriting:</span> {product.copywriting}</p>
+            <p><span className="font-medium">Marketplace:</span> {product.marketplace}</p>
+            <p><span className="font-medium">Active:</span> {product.active ? "Yes" : "No"}</p>
           </>
         )}
       </div>

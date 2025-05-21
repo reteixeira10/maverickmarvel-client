@@ -1,7 +1,23 @@
 import React, { useState } from "react";
 
 const ProductForm = ({ onSuccess }) => {
-  const [form, setForm] = useState({ name: "", material: "", weight: "" });
+  const [form, setForm] = useState({
+    name: "",
+    material: "",
+    weight: "",
+    SKU: "",
+    cost: "",
+    orders: "",
+    origin: "",
+    print_time: "",
+    category: "",
+    dimensions: "",
+    colors: "",
+    print_instruction: "",
+    copywriting: "",
+    marketplace: "",
+    active: false,
+  });
   const [photos, setPhotos] = useState([]);
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
@@ -19,9 +35,9 @@ const ProductForm = ({ onSuccess }) => {
     setError("");
     setLoading(true);
     const formData = new FormData();
-    formData.append("name", form.name);
-    formData.append("material", form.material);
-    formData.append("weight", form.weight);
+    Object.keys(form).forEach((key) => {
+      formData.append(key, form[key]);
+    });
     photos.forEach((file) => formData.append("photos", file));
     try {
       const res = await fetch("/api/products", {
@@ -32,7 +48,23 @@ const ProductForm = ({ onSuccess }) => {
         const data = await res.json();
         throw new Error(data.error || "Failed to add product");
       }
-      setForm({ name: "", material: "", weight: "" });
+      setForm({
+        name: "",
+        material: "",
+        weight: "",
+        SKU: "",
+        cost: "",
+        orders: "",
+        origin: "",
+        print_time: "",
+        category: "",
+        dimensions: "",
+        colors: "",
+        print_instruction: "",
+        copywriting: "",
+        marketplace: "",
+        active: false,
+      });
       setPhotos([]);
       if (onSuccess) onSuccess();
     } catch (err) {
@@ -84,6 +116,127 @@ const ProductForm = ({ onSuccess }) => {
           className="w-full px-3 py-2 rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-green-400"
           required
         />
+      </div>
+      <div className="mb-4">
+        <label className="block mb-1 text-gray-700 dark:text-gray-200">SKU</label>
+        <input
+          type="text"
+          name="SKU"
+          value={form.SKU}
+          onChange={handleChange}
+          className="w-full px-3 py-2 rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-green-400"
+        />
+      </div>
+      <div className="mb-4">
+        <label className="block mb-1 text-gray-700 dark:text-gray-200">Cost</label>
+        <input
+          type="number"
+          name="cost"
+          value={form.cost}
+          onChange={handleChange}
+          step="0.01"
+          className="w-full px-3 py-2 rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-green-400"
+        />
+      </div>
+      <div className="mb-4">
+        <label className="block mb-1 text-gray-700 dark:text-gray-200">Orders</label>
+        <input
+          type="number"
+          name="orders"
+          value={form.orders}
+          onChange={handleChange}
+          className="w-full px-3 py-2 rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-green-400"
+        />
+      </div>
+      <div className="mb-4">
+        <label className="block mb-1 text-gray-700 dark:text-gray-200">Origin</label>
+        <input
+          type="url"
+          name="origin"
+          value={form.origin}
+          onChange={handleChange}
+          className="w-full px-3 py-2 rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-green-400"
+        />
+      </div>
+      <div className="mb-4">
+        <label className="block mb-1 text-gray-700 dark:text-gray-200">Print Time</label>
+        <input
+          type="text"
+          name="print_time"
+          value={form.print_time}
+          onChange={handleChange}
+          className="w-full px-3 py-2 rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-green-400"
+        />
+      </div>
+      <div className="mb-4">
+        <label className="block mb-1 text-gray-700 dark:text-gray-200">Category</label>
+        <input
+          type="text"
+          name="category"
+          value={form.category}
+          onChange={handleChange}
+          className="w-full px-3 py-2 rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-green-400"
+        />
+      </div>
+      <div className="mb-4">
+        <label className="block mb-1 text-gray-700 dark:text-gray-200">Dimensions</label>
+        <input
+          type="text"
+          name="dimensions"
+          value={form.dimensions}
+          onChange={handleChange}
+          className="w-full px-3 py-2 rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-green-400"
+        />
+      </div>
+      <div className="mb-4">
+        <label className="block mb-1 text-gray-700 dark:text-gray-200">Colors</label>
+        <input
+          type="text"
+          name="colors"
+          value={form.colors}
+          onChange={handleChange}
+          className="w-full px-3 py-2 rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-green-400"
+        />
+      </div>
+      <div className="mb-4">
+        <label className="block mb-1 text-gray-700 dark:text-gray-200">Print Instruction</label>
+        <textarea
+          name="print_instruction"
+          value={form.print_instruction}
+          onChange={handleChange}
+          className="w-full px-3 py-2 rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-green-400"
+        />
+      </div>
+      <div className="mb-4">
+        <label className="block mb-1 text-gray-700 dark:text-gray-200">Copywriting</label>
+        <textarea
+          name="copywriting"
+          value={form.copywriting}
+          onChange={handleChange}
+          className="w-full px-3 py-2 rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-green-400"
+        />
+      </div>
+      <div className="mb-4">
+        <label className="block mb-1 text-gray-700 dark:text-gray-200">Marketplace</label>
+        <textarea
+          name="marketplace"
+          value={form.marketplace}
+          onChange={handleChange}
+          className="w-full px-3 py-2 rounded border border-gray-300 dark:border-gray-700 bg-gray-50 dark:bg-gray-900 text-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-green-400"
+        />
+      </div>
+      <div className="mb-4">
+        <label className="block mb-1 text-gray-700 dark:text-gray-200">Active</label>
+        <label className="flex items-center">
+          <input
+            type="checkbox"
+            name="active"
+            checked={form.active}
+            onChange={(e) => setForm({ ...form, active: e.target.checked })}
+            className="mr-2"
+          />
+          Active
+        </label>
       </div>
       <div className="mb-4">
         <label className="block mb-1 text-gray-700 dark:text-gray-200">Photos</label>
