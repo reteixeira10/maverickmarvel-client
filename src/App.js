@@ -11,19 +11,19 @@ import './App.css';
 function App() {
   return (
     <Router>
-      <div className="App bg-white dark:bg-gray-900 min-h-screen text-gray-900 dark:text-gray-100 flex">
-        <Sidebar />
-        <div className="flex-1 ml-56">
-          <Navbar />
-          <div className="p-8">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/products" element={<Products />} />
-            <Route path="/products/new" element={<ProductCreate />} />
-            <Route path="/products/:id/edit" element={<ProductEdit />} />
-            {/* Add more routes here for Filaments, Suppliers, etc. */}
-          </Routes>
-          </div>
+      <div className="App bg-white dark:bg-gray-900 min-h-screen text-gray-900 dark:text-gray-100 flex flex-col">
+        <Navbar />
+        <div className="flex flex-1 min-h-0">
+          <Sidebar />
+          <main className="flex-1 p-8 overflow-auto">
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="/products" element={<Products />} />
+              <Route path="/products/new" element={<ProductCreate />} />
+              <Route path="/products/:id/edit" element={<ProductEdit />} />
+              {/* Add more routes here for Filaments, Suppliers, etc. */}
+            </Routes>
+          </main>
         </div>
       </div>
     </Router>

@@ -1,37 +1,31 @@
 import React from "react";
-import { NavLink } from "react-router-dom";
+import { Home, Box, Layers, Truck } from "lucide-react";
+import { Button } from "./ui/Button";
+import { Link, useLocation } from "react-router-dom";
 
-const menuItems = [
-  { name: "Home", to: "/" },
-  { name: "Products", to: "/products" },
-  { name: "Filaments", to: "/filaments" },
-  { name: "Suppliers", to: "/suppliers" },
-];
-
-const Sidebar = () => {
+export default function Sidebar() {
+  const location = useLocation();
+  const navItems = [
+    { to: "/", label: "Home", icon: <Home className="mr-2 h-4 w-4" /> },
+    { to: "/products", label: "Products", icon: <Box className="mr-2 h-4 w-4" /> },
+    { to: "/filaments", label: "Filaments", icon: <Layers className="mr-2 h-4 w-4" /> },
+    { to: "/suppliers", label: "Suppliers", icon: <Truck className="mr-2 h-4 w-4" /> },
+  ];
   return (
-    <aside className="h-screen w-56 bg-gray-100 dark:bg-gray-800 shadow-md flex flex-col py-8 px-4 fixed">
-      <div className="mb-10">
-        <span className="text-2xl font-bold text-green-700 dark:text-green-400">Farm Ilusion</span>
-      </div>
-      <nav className="flex flex-col gap-4">
-        {menuItems.map((item) => (
-          <NavLink
-            key={item.name}
-            to={item.to}
-            className={({ isActive }) =>
-              `text-gray-700 dark:text-gray-200 hover:bg-green-100 dark:hover:bg-green-900 rounded px-3 py-2 font-medium transition ${
-                isActive ? "bg-green-200 dark:bg-green-950 text-green-700 dark:text-green-400" : ""
-              }`
-            }
-            end={item.to === "/"}
-          >
-            {item.name}
-          </NavLink>
+    <aside className="w-64 bg-white dark:bg-gray-800 shadow-sm p-4 min-h-screen">
+      <nav className="space-y-1">
+        {navItems.map(item => (
+          <Link key={item.to} to={item.to}>
+            <Button
+              variant={location.pathname === item.to ? "default" : "ghost"}
+              className="w-full justify-start mb-1"
+            >
+              {item.icon}
+              {item.label}
+            </Button>
+          </Link>
         ))}
       </nav>
     </aside>
   );
-};
-
-export default Sidebar;
+}
