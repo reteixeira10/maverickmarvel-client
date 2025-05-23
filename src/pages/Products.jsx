@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import ProductModal from "../components/ProductModal";
 import { Button } from "../components/ui/Button";
 import { PlusCircle } from "lucide-react";
+import { Package, Weight, Edit, Trash2 } from "lucide-react";
 
 // REACT_APP_API_URL will be set by Render for the deployed static site
 // For local development, if REACT_APP_API_URL is not set, it will default to an empty string,
@@ -72,52 +73,62 @@ const Products = () => {
           Loading...
         </div>
       ) : (
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {products.map((product) => (
             <div
               key={product.id}
-              className="bg-white dark:bg-gray-800 rounded-lg shadow-md p-6 flex flex-col items-center cursor-pointer"
+              className="max-w-sm bg-white border border-gray-200 rounded-lg shadow-sm dark:bg-gray-800 dark:border-gray-700 flex flex-col cursor-pointer transition hover:shadow-lg"
               onClick={() => setSelectedProductId(product.id)}
             >
               {product.photo ? (
                 <img
+                  className="rounded-t-lg w-full h-48 object-cover"
                   src={product.photo.image}
                   alt={product.photo.filename}
-                  className="w-32 h-32 object-cover rounded mb-4"
                 />
               ) : (
-                <div className="w-32 h-32 bg-gray-200 dark:bg-gray-700 rounded mb-4 flex items-center justify-center text-gray-400">
+                <div className="rounded-t-lg w-full h-48 bg-gray-200 dark:bg-gray-700 flex items-center justify-center text-gray-400 text-lg">
                   No Photo
                 </div>
               )}
-              <h2 className="text-xl font-semibold text-gray-900 dark:text-gray-100 mb-2">
-                {product.name}
-              </h2>
-              <p className="text-gray-700 dark:text-gray-300 mb-1">
-                <span className="font-medium">Material:</span> {product.material}
-              </p>
-              <p className="text-gray-700 dark:text-gray-300 mb-1">
-                <span className="font-medium">Weight:</span> {product.weight} kg
-              </p>
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  handleDelete(product.id);
-                }}
-                className="mt-4 bg-red-600 hover:bg-red-700 text-white px-3 py-1 rounded transition"
-                disabled={loading}
-              >
-                Delete
-              </button>
-              <button
-                onClick={(e) => {
-                  e.stopPropagation();
-                  navigate(`/products/${product.id}/edit`);
-                }}
-                className="mt-2 bg-blue-600 hover:bg-blue-700 text-white px-3 py-1 rounded transition"
-              >
-                Edit
-              </button>
+              <div className="p-5 flex flex-col flex-1">
+                <h2 className="mb-2 text-2xl font-bold tracking-tight text-gray-900 dark:text-white">
+                  {product.name}
+                </h2>
+                <div className="mb-3 flex items-center text-gray-700 dark:text-gray-400">
+                  <Package className="w-5 h-5 mr-2" />
+                  <span className="font-medium mr-1">Material:</span>
+                  {product.material}
+                </div>
+                <div className="mb-3 flex items-center text-gray-700 dark:text-gray-400">
+                  <Weight className="w-5 h-5 mr-2" />
+                  <span className="font-medium mr-1">Weight:</span>
+                  {product.weight} kg
+                </div>
+                <div className="mt-auto flex gap-2">
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      navigate(`/products/${product.id}/edit`);
+                    }}
+                    className="flex-1 inline-flex items-center justify-center px-3 py-2 text-sm font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 transition"
+                  >
+                    <Edit className="w-4 h-4 mr-1" />
+                    Edit
+                  </button>
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      handleDelete(product.id);
+                    }}
+                    className="flex-1 inline-flex items-center justify-center px-3 py-2 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-700 dark:hover:bg-red-800 dark:focus:ring-red-900 transition"
+                    disabled={loading}
+                  >
+                    <Trash2 className="w-4 h-4 mr-1" />
+                    Delete
+                  </button>
+                </div>
+              </div>
             </div>
           ))}
         </div>
