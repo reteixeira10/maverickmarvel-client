@@ -111,7 +111,7 @@ const Products = () => {
                       e.stopPropagation();
                       navigate(`/products/${product.id}/edit`);
                     }}
-                    className="flex-1 inline-flex items-center justify-center px-3 py-2 text-sm font-medium text-white bg-blue-700 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 transition"
+                    className="flex-1 inline-flex items-center justify-center px-3 py-2 text-sm font-medium text-white bg-blue-900 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 transition"
                   >
                     <Edit className="w-4 h-4 mr-1" />
                     Edit
@@ -121,7 +121,7 @@ const Products = () => {
                       e.stopPropagation();
                       handleDelete(product.id);
                     }}
-                    className="flex-1 inline-flex items-center justify-center px-3 py-2 text-sm font-medium text-white bg-red-600 rounded-lg hover:bg-red-700 focus:ring-4 focus:outline-none focus:ring-red-300 dark:bg-red-700 dark:hover:bg-red-800 dark:focus:ring-red-900 transition"
+                    className="flex-1 inline-flex items-center justify-center px-3 py-2 text-sm font-medium text-white bg-gray-600 rounded-lg hover:bg-gray-500 focus:ring-4 focus:outline-none focus:ring-gray-300 dark:bg-gray-600 dark:hover:bg-gray-500 dark:focus:ring-gray-700 transition"
                     disabled={loading}
                   >
                     <Trash2 className="w-4 h-4 mr-1" />
