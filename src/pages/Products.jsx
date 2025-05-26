@@ -111,9 +111,9 @@ const Products = () => {
                       e.stopPropagation();
                       navigate(`/products/${product.id}/edit`);
                     }}
-                    className="flex-1 inline-flex items-center justify-center px-3 py-2 text-sm font-medium text-white 
-    bg-blue-900 rounded-lg hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300
-    dark:bg-blue-800 dark:hover:bg-blue-700 dark:focus:ring-blue-800 transition"
+                    className="flex-1 inline-flex items-center justify-center px-3 py-2 text-sm font-medium text-white
+    bg-green-950 rounded-lg hover:bg-green-900 focus:ring-4 focus:outline-none focus:ring-green-900
+    dark:bg-green-900 dark:hover:bg-green-800 dark:focus:ring-green-900 transition"
                   >
                     <Edit className="w-4 h-4 mr-1" />
                     Edit

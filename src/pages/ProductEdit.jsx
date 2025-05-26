@@ -137,7 +137,6 @@ const ProductEdit = () => {
             name="SKU"
             value={form.SKU}
             onChange={handleChange}
-            required
             className="w-full border rounded px-3 py-2 dark:bg-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-green-700 border-gray-300 dark:border-gray-700"
           />
         </div>
@@ -147,7 +146,6 @@ const ProductEdit = () => {
             name="category"
             value={form.category}
             onChange={handleChange}
-            required
             className="w-full border rounded px-3 py-2 dark:bg-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-green-700 border-gray-300 dark:border-gray-700"
           />
         </div>
@@ -167,7 +165,6 @@ const ProductEdit = () => {
             name="colors"
             value={form.colors}
             onChange={handleChange}
-            required
             className="w-full border rounded px-3 py-2 dark:bg-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-green-700 border-gray-300 dark:border-gray-700"
           />
         </div>
@@ -177,7 +174,6 @@ const ProductEdit = () => {
             name="dimensions"
             value={form.dimensions}
             onChange={handleChange}
-            required
             className="w-full border rounded px-3 py-2 dark:bg-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-green-700 border-gray-300 dark:border-gray-700"
           />
         </div>
@@ -203,7 +199,6 @@ const ProductEdit = () => {
             type="number"
             step="0.01"
             min="0"
-            required
             className="w-full border rounded px-3 py-2 dark:bg-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-green-700 border-gray-300 dark:border-gray-700"
           />
         </div>
@@ -215,7 +210,6 @@ const ProductEdit = () => {
             onChange={handleChange}
             type="number"
             min="0"
-            required
             className="w-full border rounded px-3 py-2 dark:bg-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-green-700 border-gray-300 dark:border-gray-700"
           />
         </div>
@@ -225,7 +219,6 @@ const ProductEdit = () => {
             name="origin"
             value={form.origin}
             onChange={handleChange}
-            required
             className="w-full border rounded px-3 py-2 dark:bg-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-green-700 border-gray-300 dark:border-gray-700"
           />
         </div>
@@ -235,7 +228,6 @@ const ProductEdit = () => {
             name="print_time"
             value={form.print_time}
             onChange={handleChange}
-            required
             className="w-full border rounded px-3 py-2 dark:bg-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-green-700 border-gray-300 dark:border-gray-700"
           />
         </div>
@@ -245,7 +237,6 @@ const ProductEdit = () => {
             name="print_instruction"
             value={form.print_instruction}
             onChange={handleChange}
-            required
             className="w-full border rounded px-3 py-2 dark:bg-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-green-700 border-gray-300 dark:border-gray-700"
           />
         </div>
@@ -255,7 +246,6 @@ const ProductEdit = () => {
             name="copywriting"
             value={form.copywriting}
             onChange={handleChange}
-            required
             className="w-full border rounded px-3 py-2 dark:bg-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-green-700 border-gray-300 dark:border-gray-700"
           />
         </div>
@@ -265,7 +255,6 @@ const ProductEdit = () => {
             name="marketplace"
             value={form.marketplace}
             onChange={handleChange}
-            required
             className="w-full border rounded px-3 py-2 dark:bg-gray-900 dark:text-gray-100 focus:outline-none focus:ring-2 focus:ring-green-700 border-gray-300 dark:border-gray-700"
           />
         </div>
